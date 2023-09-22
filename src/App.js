@@ -23,6 +23,7 @@ function App() {
     console.log(isValidEmail);
     setValidationStates({ ...validationStates, email: isValidEmail });
     console.log(validationStates);
+    return isValidEmail;
   })
 
   const handlePasswordChange = ((e) => {
@@ -37,9 +38,9 @@ function App() {
     setFormValues({ ...formValues, favClass: e.target.value })
   });
 
-  const clickSubmit = async () => {
-    await handleEmailValidation();
-    if (validationStates.email && validationStates.password) {
+  const clickSubmit = () => {
+    const isValidEmail = handleEmailValidation();
+    if (isValidEmail && validationStates.password) {
       alert(JSON.stringify(formValues));
     } else {
       alert('Porfavor corregir los errores del formulario antes de enviar');
@@ -48,7 +49,6 @@ function App() {
   
 
   useEffect(() => {
-    
   }, [validationStates.email]);
 
   return (
